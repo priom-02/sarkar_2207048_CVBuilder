@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.cvbuilder2.controllers.previewcontroller"
+            prefWidth="700" prefHeight="600">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #3b3b3b;">
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
+
+            <Button fx:id="backBtn" text="Back"/>
+            <Label text="CV Preview"
+                   style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true">
+            <VBox spacing="20">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+
+                <Label fx:id="nameLabel" style="-fx-font-size: 28px; -fx-font-weight: bold;"/>
+
+                <VBox spacing="5">
+                    <Label fx:id="emailLabel"/>
+                    <Label fx:id="phoneLabel"/>
+                    <Label fx:id="addressLabel"/>
+                </VBox>
+
+                <Separator/>
+
+                <VBox spacing="10">
+                    <Label text="Education" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                    <Label fx:id="educationLabel" wrapText="true"/>
+                </VBox>
+
+                <Separator/>
+
+                <VBox spacing="10">
+                    <Label text="Skills" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                    <Label fx:id="skillsLabel" wrapText="true"/>
+                </VBox>
+
+                <Separator/>
+
+                <VBox spacing="10">
+                    <Label text="Experience" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                    <Label fx:id="experienceLabel" wrapText="true"/>
+                </VBox>
+
+                <Separator/>
+
+                <VBox spacing="10">
+                    <Label text="Projects" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+                    <Label fx:id="projectsLabel" wrapText="true"/>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

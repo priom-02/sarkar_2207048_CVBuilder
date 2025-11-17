@@ -1,0 +1,16 @@
+package com.example.cvbuilder2.controllers;
+
+import com.example.cvbuilder2.utility.scenecontroller;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+
+public class homecontroller {
+
+    @FXML
+    private Button createBtn;
+
+    @FXML
+    public void initialize() {
+        createBtn.setOnAction(event -> scenecontroller.switchTo("form.fxml"));
+    }
+}
