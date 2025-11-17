@@ -13,6 +13,7 @@
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
+
             <columnConstraints>
                 <ColumnConstraints percentWidth="30"/>
                 <ColumnConstraints percentWidth="70"/>
@@ -49,6 +50,10 @@
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
+
+            <!-- Save Button -->
+            <Button fx:id="saveBtn" text="Save" prefWidth="120"/>
+
             <Button fx:id="backBtn" text="Back" prefWidth="120"/>
             <Button fx:id="generateBtn" text="Generate CV" prefWidth="170"/>
         </HBox>

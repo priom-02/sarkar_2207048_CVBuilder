@@ -1,0 +1,27 @@
+.home-root {
+    -fx-background-color: linear-gradient(to bottom right, #4facfe, #00f2fe);
+}
+
+.home-container {
+    -fx-padding: 50;
+}
+
+.home-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.primary-btn {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #0078ff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 10;
+}
+
+.primary-btn:hover {
+    -fx-background-color: #e8f1ff;
+}
+
