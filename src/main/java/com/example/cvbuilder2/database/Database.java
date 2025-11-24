@@ -108,7 +108,7 @@ public class Database {
         }
     }
 
-    // -------- FETCH ALL (synchronous) --------
+
     public static List<cvmodel> fetchAll() throws SQLException {
         List<cvmodel> list = new ArrayList<>();
         String sql = "SELECT id, name, email, phone, address, education, skills, experience, projects FROM cvdata ORDER BY id DESC";
