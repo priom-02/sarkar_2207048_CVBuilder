@@ -12,10 +12,10 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        // Create table when app starts
+
         Database.createTable();
 
-        // Store stage for switching scenes
+
         scenecontroller.setMainStage(stage);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
@@ -23,7 +23,7 @@ public class Main extends Application {
 
         Scene scene = new Scene(loader.load());
 
-        // Attach CSS
+
         scene.getStylesheets().add(
                 getClass().getResource("/com/example/cvbuilder2/styles.css")
                         .toExternalForm()
@@ -38,7 +38,7 @@ public class Main extends Application {
     public void stop() throws Exception {
         super.stop();
 
-        // Ensure executor thread shuts down safely
+
         Database.shutdownExecutor();
     }
 

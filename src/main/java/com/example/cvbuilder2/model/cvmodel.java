@@ -26,7 +26,7 @@ public class cvmodel {
         this.projects = projects;
     }
 
-    // ------- GETTERS --------
+
 
     public long getId() { return id; }
     public String getName() { return name; }
@@ -38,7 +38,7 @@ public class cvmodel {
     public String getExperience() { return experience; }
     public String getProjects() { return projects; }
 
-    // ------- SETTERS --------
+
 
     public void setId(long id) { this.id = id; }
     public void setName(String name) { this.name = name; }

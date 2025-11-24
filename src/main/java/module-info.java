@@ -1,10 +1,8 @@
 module com.example.cvbuilder2 {
-
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
 
-    // JSON libraries
     requires com.fasterxml.jackson.databind;
     requires com.fasterxml.jackson.core;
     requires com.fasterxml.jackson.annotation;

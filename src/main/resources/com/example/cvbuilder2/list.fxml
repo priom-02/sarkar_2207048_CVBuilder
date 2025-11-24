@@ -1,35 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.geometry.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.cvbuilder2.controllers.listcontroller"
-            prefWidth="800" prefHeight="600"
-            stylesheets="@styles.css" >
+<AnchorPane prefHeight="500.0" prefWidth="700.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.cvbuilder2.controllers.listcontroller">
 
-    <top>
-        <HBox spacing="10" alignment="CENTER_LEFT" padding="10">
-            <Label text="Saved CVs" style="-fx-font-size:20px; -fx-font-weight:bold;"/>
-            <Pane HBox.hgrow="ALWAYS"/>
-            <Button text="New CV" fx:id="newBtn"/>
-            <Button text="Refresh" fx:id="refreshBtn"/>
-            <Button text="Export JSON" fx:id="exportBtn"/>
-            <Button text="Import JSON" fx:id="importBtn"/>
-        </HBox>
-    </top>
+    <children>
 
-    <center>
-        <TableView fx:id="table" prefWidth="780" prefHeight="520">
+        <!-- Title -->
+        <Label text="CV List"
+               layoutX="300" layoutY="20"
+               style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+        <!-- Table -->
+        <TableView fx:id="table" layoutX="30" layoutY="70" prefWidth="640" prefHeight="330">
+
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="60"/>
-                <TableColumn fx:id="colName" text="Name" prefWidth="180"/>
-                <TableColumn fx:id="colEmail" text="Email" prefWidth="200"/>
-                <TableColumn fx:id="colPhone" text="Phone" prefWidth="140"/>
-                <TableColumn fx:id="colActions" text="Actions" prefWidth="180"/>
+
+                <TableColumn fx:id="colId" text="ID" prefWidth="50">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="id"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="colName" text="Name" prefWidth="150">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="colEmail" text="Email" prefWidth="180">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="email"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <TableColumn fx:id="colPhone" text="Phone" prefWidth="140">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="phone"/>
+                    </cellValueFactory>
+                </TableColumn>
+
+                <!--   ⭐ Actions Column (Edit/Delete Buttons) ⭐   -->
+                <TableColumn fx:id="colActions" text="Actions" prefWidth="120"/>
+
             </columns>
         </TableView>
-    </center>
 
-</BorderPane>
+        <!-- Buttons -->
+        <Button fx:id="newBtn" text="New CV"
+                layoutX="30" layoutY="420" prefWidth="120"
+                style="-fx-background-color:#5DADE2; -fx-text-fill:white; -fx-font-size:16px;" />
+
+        <Button fx:id="refreshBtn" text="Refresh"
+                layoutX="170" layoutY="420" prefWidth="120"
+                style="-fx-background-color:#58D68D; -fx-text-fill:white; -fx-font-size:16px;" />
+
+        <Button fx:id="exportBtn" text="Export JSON"
+                layoutX="310" layoutY="420" prefWidth="120"
+                style="-fx-background-color:#AF7AC5; -fx-text-fill:white; -fx-font-size:16px;" />
+
+        <Button fx:id="importBtn" text="Import JSON"
+                layoutX="450" layoutY="420" prefWidth="120"
+                style="-fx-background-color:#F4D03F; -fx-text-fill:white; -fx-font-size:16px;" />
+
+        <Button fx:id="backButton" text="Back"
+                layoutX="590" layoutY="420" prefWidth="80"
+                style="-fx-background-color:#E74C3C; -fx-text-fill:white; -fx-font-size:16px;" />
+    </children>
+
+</AnchorPane>

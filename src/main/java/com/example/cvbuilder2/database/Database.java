@@ -16,23 +16,25 @@ public class Database {
     // Executor for DB operations
     private static final ExecutorService DB_EXEC = Executors.newFixedThreadPool(2);
 
-    // Optional sample import path provided by user upload (developer note)
+
     public static final String SAMPLE_JSON_PATH = "/mnt/data/Untitled document.pdf";
 
-    // -------- CONNECT TO DATABASE --------
+
     public static Connection connect() throws SQLException {
         try {
-            Class.forName("org.sqlite.JDBC");
+            Class.forName("org.sqlite.JDBC"); // ⭐ REQUIRED ⭐
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         return DriverManager.getConnection("jdbc:sqlite:cvbuilder.db");
     }
 
 
 
 
-    // -------- CREATE TABLE IF NOT EXISTS --------
+
+
     public static void createTable() {
         String sql = "CREATE TABLE IF NOT EXISTS cvdata (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -52,7 +54,7 @@ public class Database {
         }
     }
 
-    // -------- INSERT CV DATA (synchronous) --------
+
     public static long saveCV(cvmodel cv) throws SQLException {
         String sql = "INSERT INTO cvdata(name, email, phone, address, education, skills, experience, projects) " +
                 "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
@@ -78,7 +80,7 @@ public class Database {
         return -1;
     }
 
-    // -------- UPDATE CV (synchronous) --------
+
     public static boolean updateCV(cvmodel cv) throws SQLException {
         String sql = "UPDATE cvdata SET name=?, email=?, phone=?, address=?, education=?, skills=?, experience=?, projects=? WHERE id=?";
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -96,7 +98,7 @@ public class Database {
         }
     }
 
-    // -------- DELETE CV --------
+
     public static boolean deleteCV(long id) throws SQLException {
         String sql = "DELETE FROM cvdata WHERE id=?";
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -128,7 +130,7 @@ public class Database {
         return list;
     }
 
-    // -------- FETCH BY ID --------
+
     public static cvmodel fetchById(long id) throws SQLException {
         String sql = "SELECT id, name, email, phone, address, education, skills, experience, projects FROM cvdata WHERE id=?";
         try (Connection conn = connect(); PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -152,7 +154,7 @@ public class Database {
         return null;
     }
 
-    // -------- ASYNC WRAPPERS (return CompletableFuture) --------
+
     public static CompletableFuture<Long> saveCVAsync(cvmodel cv) {
         return CompletableFuture.supplyAsync(() -> {
             try {
@@ -203,7 +205,7 @@ public class Database {
         }, DB_EXEC);
     }
 
-    // -------- JSON export/import (optional) using Jackson --------
+
     public static void exportToJson(File file, List<cvmodel> data) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(file, data);
@@ -217,7 +219,7 @@ public class Database {
         return list;
     }
 
-    // shutdown executor when app exits
+
     public static void shutdownExecutor() {
         DB_EXEC.shutdown();
     }
