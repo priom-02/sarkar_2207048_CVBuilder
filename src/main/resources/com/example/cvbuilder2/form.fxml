@@ -6,11 +6,9 @@
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.cvbuilder2.controllers.formcontroller"
-            prefWidth="700"
-            prefHeight="600"
+            prefWidth="700" prefHeight="600"
             stylesheets="@styles.css"
             styleClass="form-root">
-
 
     <center>
         <GridPane hgap="20" vgap="18" styleClass="form-container">
@@ -23,7 +21,6 @@
                 <ColumnConstraints percentWidth="70"/>
             </columnConstraints>
 
-            <!-- FORM LABELS + INPUTS -->
             <Label text="Full Name:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="form-label"/>
             <TextField fx:id="nameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
@@ -47,9 +44,9 @@
 
             <Label text="Projects:" GridPane.rowIndex="7" GridPane.columnIndex="0" styleClass="form-label"/>
             <TextArea fx:id="projectsArea" prefRowCount="3" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+
         </GridPane>
     </center>
-
 
     <bottom>
         <HBox alignment="CENTER" spacing="25" styleClass="form-buttons">

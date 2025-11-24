@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
 
-<BorderPane prefHeight="400" prefWidth="600"
-            styleClass="home-root"
-            xmlns="http://javafx.com/javafx/17.0.12"
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.cvbuilder2.controllers.homecontroller"
-            stylesheets="@styles.css">
+            prefWidth="600" prefHeight="400"
+            stylesheets="@styles.css"
+            styleClass="home-root">
 
     <center>
-        <VBox alignment="CENTER" spacing="20" styleClass="home-container">
+        <VBox spacing="20" alignment="CENTER" styleClass="home-container">
 
             <Label text="Welcome to CV Builder!"
                    styleClass="home-title"/>
 
-            <Button fx:id="createBtn"
-                    text="Create New CV"
+            <Button text="Create New CV"
+                    fx:id="createBtn"
                     prefWidth="200"
                     styleClass="primary-btn"/>
+
+            <Button text="Manage CVs"
+                    fx:id="manageBtn"
+                    prefWidth="200"
+                    styleClass="primary-btn"/>
+
         </VBox>
     </center>
 

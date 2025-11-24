@@ -3,14 +3,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.image.ImageView?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.cvbuilder2.controllers.previewcontroller"
             prefWidth="700" prefHeight="600"
             stylesheets="@styles.css"
             styleClass="preview-root">
-
 
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20" styleClass="preview-header">
@@ -20,19 +18,8 @@
 
             <Button fx:id="backBtn" text="Back" styleClass="back-btn"/>
             <Label text="CV Preview" styleClass="preview-title"/>
-
-            <!-- Push image to right side -->
-            <Pane HBox.hgrow="ALWAYS"/>
-
-            <!-- Profile Photo -->
-            <ImageView fx:id="profileImage"
-                       fitWidth="90"
-                       fitHeight="90"
-                       preserveRatio="true"
-                       styleClass="preview-photo"/>
         </HBox>
     </top>
-
 
     <center>
         <ScrollPane fitToWidth="true" styleClass="preview-scroll">
@@ -41,46 +28,40 @@
                     <Insets top="20" right="20" bottom="20" left="20"/>
                 </padding>
 
-                <!-- Name -->
                 <Label fx:id="nameLabel" styleClass="preview-name"/>
 
-                <!-- Email, Phone, Address (ENLARGED FONT) -->
-                <VBox spacing="10">
-                    <Label fx:id="emailLabel"  styleClass="preview-info-text"/>
-                    <Label fx:id="phoneLabel"  styleClass="preview-info-text"/>
-                    <Label fx:id="addressLabel" styleClass="preview-info-text"/>
+                <VBox spacing="8">
+                    <Label fx:id="emailLabel" styleClass="info-label"/>
+                    <Label fx:id="phoneLabel" styleClass="info-label"/>
+                    <Label fx:id="addressLabel" styleClass="info-label"/>
                 </VBox>
 
                 <Separator/>
 
-                <!-- Education -->
-                <VBox spacing="10">
+                <VBox spacing="12">
                     <Label text="Education" styleClass="section-title"/>
-                    <Label fx:id="educationLabel" wrapText="true" styleClass="preview-info-text"/>
+                    <Label fx:id="educationLabel" wrapText="true" styleClass="section-text"/>
                 </VBox>
 
                 <Separator/>
 
-                <!-- Skills -->
-                <VBox spacing="10">
+                <VBox spacing="12">
                     <Label text="Skills" styleClass="section-title"/>
-                    <Label fx:id="skillsLabel" wrapText="true" styleClass="preview-info-text"/>
+                    <Label fx:id="skillsLabel" wrapText="true" styleClass="section-text"/>
                 </VBox>
 
                 <Separator/>
 
-                <!-- Experience -->
-                <VBox spacing="10">
+                <VBox spacing="12">
                     <Label text="Experience" styleClass="section-title"/>
-                    <Label fx:id="experienceLabel" wrapText="true" styleClass="preview-info-text"/>
+                    <Label fx:id="experienceLabel" wrapText="true" styleClass="section-text"/>
                 </VBox>
 
                 <Separator/>
 
-                <!-- Projects -->
-                <VBox spacing="10">
+                <VBox spacing="12">
                     <Label text="Projects" styleClass="section-title"/>
-                    <Label fx:id="projectsLabel" wrapText="true" styleClass="preview-info-text"/>
+                    <Label fx:id="projectsLabel" wrapText="true" styleClass="section-text"/>
                 </VBox>
 
             </VBox>

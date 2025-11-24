@@ -1,16 +1,19 @@
 module com.example.cvbuilder2 {
+
     requires javafx.controls;
     requires javafx.fxml;
-    requires javafx.web;
+    requires java.sql;
 
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires net.synedra.validatorfx;
-    requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.bootstrapfx.core;
-    requires eu.hansolo.tilesfx;
-    requires com.almasb.fxgl.all;
+    // JSON libraries
+    requires com.fasterxml.jackson.databind;
+    requires com.fasterxml.jackson.core;
+    requires com.fasterxml.jackson.annotation;
 
+    opens com.example.cvbuilder2 to javafx.fxml;
     opens com.example.cvbuilder2.controllers to javafx.fxml;
+    opens com.example.cvbuilder2.model to javafx.base, com.fasterxml.jackson.databind;
+    opens com.example.cvbuilder2.database;
+
     exports com.example.cvbuilder2;
+    exports com.example.cvbuilder2.controllers;
 }

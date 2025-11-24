@@ -1,9 +1,13 @@
 package com.example.cvbuilder2.controllers;
 
+import com.example.cvbuilder2.database.Database;
 import com.example.cvbuilder2.model.cvmodel;
 import com.example.cvbuilder2.utility.scenecontroller;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+
+import java.util.concurrent.CompletableFuture;
 
 public class formcontroller {
 
@@ -19,72 +23,102 @@ public class formcontroller {
 
     @FXML private Button backBtn;
     @FXML private Button generateBtn;
-    @FXML private Button saveBtn;
+
+    // when editing an existing record, this will be non-null
+    private cvmodel editingModel;
 
     @FXML
     public void initialize() {
-
         backBtn.setOnAction(e -> scenecontroller.switchTo("home.fxml"));
 
-
-        if (saveBtn != null) {
-            saveBtn.setOnAction(e -> {
-                if (isValid()) {
-                    showInfo("Data saved successfully!");
-                }
-            });
+        // If this controller is used for editing, scenecontroller.getCV() can pass a pre-filled model
+        cvmodel maybe = scenecontroller.getCV();
+        if (maybe != null && maybe.getId() != 0) {
+            this.editingModel = maybe;
+            populateFields(maybe);
         }
 
-
         generateBtn.setOnAction(e -> {
-            if (isValid()) {
 
-                cvmodel cv = new cvmodel(
-                        nameField.getText(),
-                        emailField.getText(),
-                        phoneField.getText(),
-                        addressField.getText(),
-                        educationArea.getText(),
-                        skillsArea.getText(),
-                        experienceArea.getText(),
-                        projectsArea.getText()
-                );
+            if (!isValid()) return;
 
-                scenecontroller.setCV(cv);
-                showInfo("CV data saved successfully!");
-                scenecontroller.switchTo("preview.fxml");
+            cvmodel cv = new cvmodel(
+                    nameField.getText().trim(),
+                    emailField.getText().trim(),
+                    phoneField.getText().trim(),
+                    addressField.getText().trim(),
+                    educationArea.getText().trim(),
+                    skillsArea.getText().trim(),
+                    experienceArea.getText().trim(),
+                    projectsArea.getText().trim()
+            );
+
+            if (editingModel != null && editingModel.getId() != 0) {
+                // update existing
+                cv.setId(editingModel.getId());
+                CompletableFuture<Boolean> fut = Database.updateCVAsync(cv);
+                fut.whenComplete((ok, ex) -> {
+                    if (ex != null) {
+                        ex.printStackTrace();
+                        Platform.runLater(() -> showError("Update failed: " + ex.getMessage()));
+                        return;
+                    }
+                    Platform.runLater(() -> {
+                        if (ok) {
+                            scenecontroller.setCV(cv);
+                            showInfo("CV updated.");
+                            scenecontroller.switchTo("preview.fxml");
+                        } else {
+                            showError("Update returned false.");
+                        }
+                    });
+                });
+            } else {
+                // insert new
+                Database.saveCVAsync(cv).whenComplete((generatedId, ex) -> {
+                    if (ex != null) {
+                        ex.printStackTrace();
+                        Platform.runLater(() -> showError("Save failed: " + ex.getMessage()));
+                        return;
+                    }
+                    cv.setId(generatedId);
+                    Platform.runLater(() -> {
+                        scenecontroller.setCV(cv);
+                        showInfo("CV saved.");
+                        scenecontroller.switchTo("preview.fxml");
+                    });
+                });
             }
         });
     }
 
-
+    private void populateFields(cvmodel cv) {
+        nameField.setText(cv.getName());
+        emailField.setText(cv.getEmail());
+        phoneField.setText(cv.getPhone());
+        addressField.setText(cv.getAddress());
+        educationArea.setText(cv.getEducation());
+        skillsArea.setText(cv.getSkills());
+        experienceArea.setText(cv.getExperience());
+        projectsArea.setText(cv.getProjects());
+    }
 
     private boolean isValid() {
-
-        if (isEmpty(nameField, "Full Name")) return false;
-        if (isEmpty(emailField, "Email")) return false;
-        if (isEmpty(phoneField, "Phone")) return false;
-        if (isEmpty(addressField, "Address")) return false;
-        if (isEmpty(educationArea, "Education")) return false;
-        if (isEmpty(skillsArea, "Skills")) return false;
-        if (isEmpty(experienceArea, "Experience")) return false;
-        if (isEmpty(projectsArea, "Projects")) return false;
-
+        if (nameField.getText().trim().isEmpty()) {
+            showError("Full Name is required.");
+            return false;
+        }
+        if (emailField.getText().trim().isEmpty()) {
+            showError("Email is required.");
+            return false;
+        }
+        // you can add more validation here (email format, phone format, etc.)
         return true;
     }
 
-    private boolean isEmpty(TextInputControl field, String fieldName) {
-        if (field.getText().trim().isEmpty()) {
-            showError(fieldName + " is required.");
-            return true;
-        }
-        return false;
-    }
-
-
     private void showError(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Missing Field");
+        alert.setTitle("Validation");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
@@ -92,7 +126,7 @@ public class formcontroller {
 
     private void showInfo(String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Success");
+        alert.setTitle("Info");
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.show();

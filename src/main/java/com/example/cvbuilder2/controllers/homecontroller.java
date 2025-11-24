@@ -10,7 +10,13 @@ public class homecontroller {
     private Button createBtn;
 
     @FXML
+    private Button manageBtn;
+
+    @FXML
     public void initialize() {
-        createBtn.setOnAction(event -> scenecontroller.switchTo("form.fxml"));
+
+        createBtn.setOnAction(e -> scenecontroller.switchTo("form.fxml"));
+
+        manageBtn.setOnAction(e -> scenecontroller.switchTo("list.fxml"));
     }
 }
