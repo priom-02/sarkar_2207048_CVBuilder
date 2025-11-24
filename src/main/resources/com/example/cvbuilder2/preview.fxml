@@ -11,9 +11,7 @@
             stylesheets="@styles.css"
             styleClass="preview-root">
 
-    <!-- =======================================================
-         TOP BAR — BACK + TITLE + PHOTO
-    ======================================================= -->
+
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20" styleClass="preview-header">
             <padding>
@@ -35,9 +33,7 @@
         </HBox>
     </top>
 
-    <!-- =======================================================
-         MAIN SCROLL CONTENT
-    ======================================================= -->
+
     <center>
         <ScrollPane fitToWidth="true" styleClass="preview-scroll">
             <VBox spacing="20" styleClass="preview-content">

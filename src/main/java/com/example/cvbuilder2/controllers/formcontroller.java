@@ -19,14 +19,14 @@ public class formcontroller {
 
     @FXML private Button backBtn;
     @FXML private Button generateBtn;
-    @FXML private Button saveBtn;   // (Since you added Save button)
+    @FXML private Button saveBtn;
 
     @FXML
     public void initialize() {
 
         backBtn.setOnAction(e -> scenecontroller.switchTo("home.fxml"));
 
-        // SAVE BUTTON → only saves, does not switch page
+
         if (saveBtn != null) {
             saveBtn.setOnAction(e -> {
                 if (isValid()) {
@@ -35,7 +35,7 @@ public class formcontroller {
             });
         }
 
-        // GENERATE CV BUTTON
+
         generateBtn.setOnAction(e -> {
             if (isValid()) {
 
@@ -57,9 +57,7 @@ public class formcontroller {
         });
     }
 
-    // ============================
-    // VALIDATION METHOD
-    // ============================
+
 
     private boolean isValid() {
 
@@ -72,7 +70,7 @@ public class formcontroller {
         if (isEmpty(experienceArea, "Experience")) return false;
         if (isEmpty(projectsArea, "Projects")) return false;
 
-        return true; // All fields filled
+        return true;
     }
 
     private boolean isEmpty(TextInputControl field, String fieldName) {
@@ -83,9 +81,6 @@ public class formcontroller {
         return false;
     }
 
-    // ============================
-    // ALERT HELPERS
-    // ============================
 
     private void showError(String msg) {
         Alert alert = new Alert(Alert.AlertType.ERROR);

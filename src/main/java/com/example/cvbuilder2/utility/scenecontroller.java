@@ -22,7 +22,6 @@ public class scenecontroller {
 
             Scene scene = new Scene(loader.load());
 
-            // 🔥 Add CSS file globally for every scene
             scene.getStylesheets().add(
                     scenecontroller.class.getResource("/com/example/cvbuilder2/styles.css").toExternalForm()
             );

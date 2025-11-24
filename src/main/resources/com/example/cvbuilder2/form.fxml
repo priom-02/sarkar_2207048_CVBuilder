@@ -11,9 +11,7 @@
             stylesheets="@styles.css"
             styleClass="form-root">
 
-    <!-- =======================================================
-         CENTER CONTENT — FORM FIELDS
-         ======================================================= -->
+
     <center>
         <GridPane hgap="20" vgap="18" styleClass="form-container">
             <padding>
@@ -52,16 +50,13 @@
         </GridPane>
     </center>
 
-    <!-- =======================================================
-         BOTTOM BUTTON BAR
-         ======================================================= -->
+
     <bottom>
         <HBox alignment="CENTER" spacing="25" styleClass="form-buttons">
             <padding>
                 <Insets top="20" right="20" bottom="20" left="20"/>
             </padding>
 
-            <Button fx:id="saveBtn" text="Save" prefWidth="120"/>
             <Button fx:id="backBtn" text="Back" prefWidth="120"/>
             <Button fx:id="generateBtn" text="Generate CV" prefWidth="170"/>
         </HBox>
